@@ -1,0 +1,76 @@
+//* data area================================================================
+const cplxObj = {
+  data: [
+    {
+      url: "https://buy.cnooc.com.cn/cbjyweb/001/001001/20190924/3594b213-e411-40fc-b4d9-33e4510cb025.html",
+      id: 0,
+      buy_start: "2019年09月25日",
+      district: null,
+      position: {
+        project_num: [[18, 33]],
+
+        bid_contact: [[1225, 1234]],
+      },
+      bid_person_url:
+        "http://192.168.140.86:5003/search?type=企业&kw=中联煤层气有限责任公司",
+    },
+  ],
+
+  tset1: [
+    {
+      url: "https://buy.cnooc.com.cn/cbjyweb/001/001001/20190924/3594b213-e411-40fc-b4d9-33e4510cb025.html",
+      id: 1,
+      buy_start: "2019年09月25日",
+    },
+  ],
+};
+
+const simpObj = {
+  3121: [
+    {
+      url: "https://buy.cnooc.com.cn/cbjyweb/001/001001/20190924/3594b213-e411-40fc-b4d9-33e4510cb025.html",
+      id: 0,
+      buy_start: "2019年09月25日",
+    },
+  ],
+};
+
+let options1 = () => {
+  let result = [];
+
+  for (let i = 0; i < 33; i++) {
+    const value = `${i.toString(16)}${i}`;
+    result.push({
+      value,
+      disabled: i === 10,
+    });
+  }
+  return result;
+};
+
+// *function definition area================================
+function objToOne(obj) {
+  var tmpData = new Object();
+
+  for (var index in obj) {
+    if (typeof obj[index] == "object") {
+      var resObj = objToOne(obj[index]);
+
+      Object.assign(tmpData, resObj); //这里使用对象合并
+    } else {
+      tmpData[index] = obj[index];
+    }
+  }
+
+  return tmpData;
+}
+
+//* running area =========================
+
+//* output area====================
+console.log("result ======================Date()", Date());
+
+// console.log(test2(result ));
+console.log(options1());
+
+console.log("result --------------");
